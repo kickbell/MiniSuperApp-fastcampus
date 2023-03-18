@@ -2,6 +2,7 @@ import ModernRIBs
 
 protocol FinanceHomeRouting: ViewableRouting {
   func attachSuperPayDashboard()
+  func attachSuperCardOnFileDashboard()
 }
 
 protocol FinanceHomePresentable: Presentable {
@@ -29,6 +30,7 @@ final class FinanceHomeInteractor: PresentableInteractor<FinanceHomePresentable>
     super.didBecomeActive()
     
     router?.attachSuperPayDashboard()
+    router?.attachSuperCardOnFileDashboard()
   }
   
   override func willResignActive() {
