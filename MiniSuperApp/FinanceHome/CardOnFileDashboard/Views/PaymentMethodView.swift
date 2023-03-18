@@ -27,9 +27,13 @@ final class PaymentMethodView: UIView {
     return label
   }()
   
-  init() {
+  init(viewModel: PaymentMethodViewModel) {
     super.init(frame: .zero)
     setupViews()
+    
+    nameLabel.text = viewModel.name
+    subtitleLabel.text = viewModel.digits
+    backgroundColor = viewModel.color
   }
   
   required init?(coder: NSCoder) {
