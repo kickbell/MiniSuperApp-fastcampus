@@ -11,6 +11,7 @@
 		A83632B829C61E9C00088ED1 /* SuperPayDashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83632B429C61E9C00088ED1 /* SuperPayDashboardViewController.swift */; };
 		A83632B929C61E9C00088ED1 /* SuperPayDashboardBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83632B529C61E9C00088ED1 /* SuperPayDashboardBuilder.swift */; };
 		A83632BA29C61E9C00088ED1 /* SuperPayDashboardInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83632B629C61E9C00088ED1 /* SuperPayDashboardInteractor.swift */; };
+		A83632BC29C632C600088ED1 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A83632BB29C632C600088ED1 /* Storyboard.storyboard */; };
 		F57EBE542738468700FE9319 /* UIImage+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57EBE512738468700FE9319 /* UIImage+Utils.swift */; };
 		F57EBE552738468700FE9319 /* Array+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57EBE522738468700FE9319 /* Array+Utils.swift */; };
 		F57EBE562738468700FE9319 /* UITableView+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57EBE532738468700FE9319 /* UITableView+Utils.swift */; };
@@ -55,6 +56,7 @@
 		A83632B429C61E9C00088ED1 /* SuperPayDashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperPayDashboardViewController.swift; sourceTree = "<group>"; };
 		A83632B529C61E9C00088ED1 /* SuperPayDashboardBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperPayDashboardBuilder.swift; sourceTree = "<group>"; };
 		A83632B629C61E9C00088ED1 /* SuperPayDashboardInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperPayDashboardInteractor.swift; sourceTree = "<group>"; };
+		A83632BB29C632C600088ED1 /* Storyboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		F57EBE512738468700FE9319 /* UIImage+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Utils.swift"; sourceTree = "<group>"; };
 		F57EBE522738468700FE9319 /* Array+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Utils.swift"; sourceTree = "<group>"; };
 		F57EBE532738468700FE9319 /* UITableView+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Utils.swift"; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				F57F6AE526DB4A2700C0117D /* FinanceHomeViewController.swift */,
 				F57F6AE626DB4A2700C0117D /* FinanceHomeBuilder.swift */,
 				F57F6AE726DB4A2700C0117D /* FinanceHomeInteractor.swift */,
+				A83632BB29C632C600088ED1 /* Storyboard.storyboard */,
 			);
 			path = FinanceHome;
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 			files = (
 				F5829F6526DB2BC500BFA8CD /* LaunchScreen.storyboard in Resources */,
 				F5829F6226DB2BC500BFA8CD /* Assets.xcassets in Resources */,
+				A83632BC29C632C600088ED1 /* Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
