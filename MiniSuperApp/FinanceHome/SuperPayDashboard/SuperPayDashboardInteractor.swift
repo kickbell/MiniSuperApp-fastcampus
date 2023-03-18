@@ -20,14 +20,22 @@ protocol SuperPayDashboardListener: AnyObject {
     // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
 }
 
+protocol SuperPayDashboardInteractorDependency {
+  var balance: ReadOnlyCurrentValuePublisher<Double> { get }
+}
+
 final class SuperPayDashboardInteractor: PresentableInteractor<SuperPayDashboardPresentable>, SuperPayDashboardInteractable, SuperPayDashboardPresentableListener {
 
     weak var router: SuperPayDashboardRouting?
     weak var listener: SuperPayDashboardListener?
+  
+    private let dependency: SuperPayDashboardInteractorDependency
 
-    // TODO: Add additional dependencies to constructor. Do not perform any logic
-    // in constructor.
-    override init(presenter: SuperPayDashboardPresentable) {
+    init(
+      presenter: SuperPayDashboardPresentable,
+      dependency: SuperPayDashboardInteractorDependency
+    ) {
+      self.dependency = dependency
         super.init(presenter: presenter)
         presenter.listener = self
     }
