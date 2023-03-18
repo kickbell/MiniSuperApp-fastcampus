@@ -12,6 +12,7 @@ protocol FinanceHomeViewControllable: ViewControllable {
 final class FinanceHomeRouter: ViewableRouter<FinanceHomeInteractable, FinanceHomeViewControllable>, FinanceHomeRouting {
   
   private let superPayDashboardBuildable: SuperPayDashboardBuildable
+  private var superPayRouting: Routing?
   
   init(
     interactor: FinanceHomeInteractable,
@@ -24,10 +25,16 @@ final class FinanceHomeRouter: ViewableRouter<FinanceHomeInteractable, FinanceHo
   }
   
   func attachSuperPayDashboard() {
-    let router = superPayDashboardBuildable.build(withListener: interactor)
+    if superPayRouting != nil {
+      return
+    }
     
+    let router = superPayDashboardBuildable.build(withListener: interactor)
+
     let dashboard = router.viewControllable
     viewController.addDashboard(dashboard)
     
+    self.superPayRouting = router
+    attachChild(router)
   }
 }
