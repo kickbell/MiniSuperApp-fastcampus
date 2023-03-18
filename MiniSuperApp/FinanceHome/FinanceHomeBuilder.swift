@@ -31,7 +31,7 @@ final class FinanceHomeBuilder: Builder<FinanceHomeDependency>, FinanceHomeBuild
   }
   
   func build(withListener listener: FinanceHomeListener) -> FinanceHomeRouting {
-    let balancePublisher = CurrentValuePublisher<Double>(0)
+    let balancePublisher = CurrentValuePublisher<Double>(10000)
     
     let component = FinanceHomeComponent(
       dependency: dependency,

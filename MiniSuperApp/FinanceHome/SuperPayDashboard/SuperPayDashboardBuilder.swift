@@ -6,12 +6,14 @@
 //
 
 import ModernRIBs
+import Foundation
 
 protocol SuperPayDashboardDependency: Dependency {
   var balance: ReadOnlyCurrentValuePublisher<Double> { get }
 }
 
 final class SuperPayDashboardComponent: Component<SuperPayDashboardDependency>, SuperPayDashboardInteractorDependency {
+  var balanceFormatter: NumberFormatter { Formatter.balanceFormatter }
   var balance: ReadOnlyCurrentValuePublisher<Double> { dependency.balance }
 }
 
