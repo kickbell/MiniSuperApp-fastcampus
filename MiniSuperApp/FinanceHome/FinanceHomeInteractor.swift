@@ -43,4 +43,8 @@ final class FinanceHomeInteractor: PresentableInteractor<FinanceHomePresentable>
   func cardOnFileDashboardDidTapAddPaymentMethod() {
     router?.attachAddPaymentMethod()
   }
+  
+  func addPaymentMethodDidTapClose() {
+    router?.detachAddPaymentMethod()
+  }
 }
