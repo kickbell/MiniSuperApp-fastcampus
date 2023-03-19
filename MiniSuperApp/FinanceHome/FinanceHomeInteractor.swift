@@ -3,6 +3,8 @@ import ModernRIBs
 protocol FinanceHomeRouting: ViewableRouting {
   func attachSuperPayDashboard()
   func attachSuperCardOnFileDashboard()
+  func attachAddPaymentMethod()
+  func detachAddPaymentMethod() //화면내릴때
 }
 
 protocol FinanceHomePresentable: Presentable {
@@ -36,5 +38,9 @@ final class FinanceHomeInteractor: PresentableInteractor<FinanceHomePresentable>
   override func willResignActive() {
     super.willResignActive()
     // TODO: Pause any business logic.
+  }
+  
+  func cardOnFileDashboardDidTapAddPaymentMethod() {
+    router?.attachAddPaymentMethod()
   }
 }
