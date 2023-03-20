@@ -64,30 +64,23 @@ final class AddPaymentMethodViewController: UIViewController, AddPaymentMethodPr
     return textField
   }
   
-  init() {
+  init(closeButtonType: DismissButtonType) {
     super.init(nibName: nil, bundle: nil)
     
     setupViews()
+    setupNavigationItem(with: closeButtonType, target: self, action: #selector(didTapClose))
   }
   
   required init?(coder: NSCoder) {
     super.init(coder: coder)
     
     setupViews()
+    setupNavigationItem(with: .close, target: self, action: #selector(didTapClose))
   }
   
   func setupViews() {
     title = "카드 추가"
-    
-    navigationItem.leftBarButtonItem = UIBarButtonItem(
-      image: UIImage(
-        systemName: "xmark",
-        withConfiguration: UIImage.SymbolConfiguration(pointSize: 18, weight: .semibold)
-      ),
-      style: .plain,
-      target: self,
-      action: #selector(didTapClose)
-    )
+ 
     view.backgroundColor = .white
     view.addSubview(cardNumberTextField)
     view.addSubview(stackView)
