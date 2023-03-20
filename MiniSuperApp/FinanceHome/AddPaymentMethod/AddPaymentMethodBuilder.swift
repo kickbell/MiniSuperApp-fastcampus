@@ -29,7 +29,7 @@ final class AddPaymentMethodBuilder: Builder<AddPaymentMethodDependency>, AddPay
 
   func build(withListener listener: AddPaymentMethodListener, closeButtonType: DismissButtonType) -> AddPaymentMethodRouting {
         let component = AddPaymentMethodComponent(dependency: dependency)
-      let viewController = AddPaymentMethodViewController(closeButtonType: closeButtonType)
+        let viewController = AddPaymentMethodViewController(closeButtonType: closeButtonType)
         let interactor = AddPaymentMethodInteractor(presenter: viewController, dependency: component)
         interactor.listener = listener
         return AddPaymentMethodRouter(interactor: interactor, viewController: viewController)
