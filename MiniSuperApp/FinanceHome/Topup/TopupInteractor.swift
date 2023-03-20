@@ -8,41 +8,67 @@
 import ModernRIBs
 
 protocol TopupRouting: Routing {
-    func cleanupViews()
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
+  func cleanupViews()
+  
+  func attachAddPaymentMethod()
+  func detachAddPaymentMethod()
 }
 
 protocol TopupListener: AnyObject {
-    // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
+  func topupDidClose()
 }
 
 protocol TopupInteractorDependency {
   var cardOnFileRepository: CardOnFileRepository { get }
 }
 
-final class TopupInteractor: Interactor, TopupInteractable {
+final class TopupInteractor: Interactor, TopupInteractable, AdaptivePresentationControllerDelegate {
 
-    weak var router: TopupRouting?
-    weak var listener: TopupListener?
+  weak var router: TopupRouting?
+  weak var listener: TopupListener?
   
   private let dependency: TopupInteractorDependency
-
-    init(
-      dependency: TopupInteractorDependency
-    ) {
-      self.dependency = dependency
+  let presentationDelegateProxy: AdaptivePresentationControllerDelegateProxy
+  
+  init(
+    dependency: TopupInteractorDependency
+  ) {
+    self.presentationDelegateProxy = AdaptivePresentationControllerDelegateProxy()
+    self.dependency = dependency
+    super.init()
+    self.presentationDelegateProxy.delegate = self
+  }
+  
+  override func didBecomeActive() {
+    super.didBecomeActive()
+      
+    if dependency.cardOnFileRepository.cardOfFile.value.isEmpty {
+      //카드추가화면
+      router?.attachAddPaymentMethod()
+    } else {
     }
+    
+  }
+  
+  override func willResignActive() {
+    super.willResignActive()
+    
+    router?.cleanupViews()
+    // TODO: Pause any business logic.
+  }
+  
+  func presentationControllerDidDismiss() {
+    listener?.topupDidClose()
+  }
+  
+  func addPaymentMethodDidTapClose() {
+    router?.detachAddPaymentMethod()
+    listener?.topupDidClose()
+  }
 
-    override func didBecomeActive() {
-        super.didBecomeActive()
-        
-        
-    }
+  func addPaymentMethodDidAddCard(paymentMethod: PaymentMethod) {
 
-    override func willResignActive() {
-        super.willResignActive()
+  }
 
-        router?.cleanupViews()
-        // TODO: Pause any business logic.
-    }
+  
 }

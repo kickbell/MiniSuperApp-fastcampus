@@ -65,4 +65,9 @@ final class FinanceHomeInteractor: PresentableInteractor<FinanceHomePresentable>
   func superPayDashboardDidTapTopup() {
     router?.attachTopup()
   }
+  
+  func topupDidClose() {
+    router?.detachTopup()
+  }
+  
 }
