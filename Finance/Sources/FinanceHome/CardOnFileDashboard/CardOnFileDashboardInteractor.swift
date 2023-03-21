@@ -8,6 +8,7 @@
 import ModernRIBs
 import Combine
 import FinanceRepository
+import Foundation
 
 
 protocol CardOnFileDashboardRouting: ViewableRouting {
@@ -49,7 +50,9 @@ final class CardOnFileDashboardInteractor: PresentableInteractor<CardOnFileDashb
     override func didBecomeActive() {
         super.didBecomeActive()
         
-      dependency.cardOnFileRepository.cardOfFile.sink { methods in
+      dependency.cardOnFileRepository.cardOfFile
+        .receive(on: DispatchQueue.main)
+        .sink { methods in
         let viewModels = methods.prefix(5).map(PaymentMethodViewModel.init)
         self.presenter.update(with: viewModels)
       }.store(in: &cancellables)
