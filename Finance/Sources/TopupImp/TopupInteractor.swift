@@ -11,6 +11,7 @@ import FinanceRepository
 import RIBsUtil
 import SuperUI
 import CombineUtil
+import Topup
 
 protocol TopupRouting: Routing {
   func cleanupViews()
@@ -24,10 +25,6 @@ protocol TopupRouting: Routing {
   func popToRoot()
 }
 
-public protocol TopupListener: AnyObject {
-  func topupDidClose()
-  func topupDidFisish()
-}
 
 protocol TopupInteractorDependency {
   var cardOnFileRepository: CardOnFileRepository { get }

@@ -2,17 +2,20 @@ import ModernRIBs
 import FinanceRepository
 import CombineUtil
 import Topup
+import TransportHome
 
 public protocol TransportHomeDependency: Dependency {
   var superPayRepository: SuperPayRepository { get }
   var cardOnFileRepository: CardOnFileRepository { get }
+  var topupBuildable: TopupBuildable { get }
 }
 
-final class TransportHomeComponent: Component<TransportHomeDependency>, TransportHomeInteractorDependency, TopupDependency {
+final class TransportHomeComponent: Component<TransportHomeDependency>, TransportHomeInteractorDependency {
   let topupBaseViewController: ViewControllable
   var cardOnFileRepository: CardOnFileRepository { dependency.cardOnFileRepository }
   var superPayRepository: SuperPayRepository { dependency.superPayRepository }
   var superPayBalance: ReadOnlyCurrentValuePublisher<Double> { superPayRepository.balance }
+  var topupBuildable: TopupBuildable { dependency.topupBuildable }
   
   init(
     dependency: TransportHomeDependency,
@@ -24,10 +27,6 @@ final class TransportHomeComponent: Component<TransportHomeDependency>, Transpor
 }
 
 // MARK: - Builder
-
-public protocol TransportHomeBuildable: Buildable {
-  func build(withListener listener: TransportHomeListener) -> ViewableRouting
-}
 
 public final class TransportHomeBuilder: Builder<TransportHomeDependency>, TransportHomeBuildable {
   
@@ -42,12 +41,10 @@ public final class TransportHomeBuilder: Builder<TransportHomeDependency>, Trans
     let interactor = TransportHomeInteractor(presenter: viewController, dependency: component)
     interactor.listener = listener
     
-    let topupBuildable = TopupBuilder(dependency: component)
-    
     return TransportHomeRouter(
       interactor: interactor,
       viewController: viewController,
-      topupBuildable: topupBuildable
+      topupBuildable: component.topupBuildable
     )
   }
 }

@@ -5,11 +5,13 @@ import TransportHome
 public protocol AppHomeDependency: Dependency {
   var superPayRepository: SuperPayRepository { get }
   var cardOnFileRepository: CardOnFileRepository { get }
+  var transportHomeBuildeable: TransportHomeBuildable { get }
 }
 
-final class AppHomeComponent: Component<AppHomeDependency>, TransportHomeDependency {
+final class AppHomeComponent: Component<AppHomeDependency> {
   var superPayRepository: SuperPayRepository { dependency.superPayRepository }
   var cardOnFileRepository: CardOnFileRepository { dependency.cardOnFileRepository }
+  var transportHomeBuildeable: TransportHomeBuildable { dependency.transportHomeBuildeable }
 }
 
 // MARK: - Builder
@@ -29,13 +31,11 @@ public final class AppHomeBuilder: Builder<AppHomeDependency>, AppHomeBuildable 
     let viewController = AppHomeViewController()
     let interactor = AppHomeInteractor(presenter: viewController)
     interactor.listener = listener
-    
-    let transportHomeBuilder = TransportHomeBuilder(dependency: component)
-    
+        
     return AppHomeRouter(
       interactor: interactor,
       viewController: viewController,
-      transportHomeBuildable: transportHomeBuilder
+      transportHomeBuildable: component.transportHomeBuildeable
     )
   }
 }

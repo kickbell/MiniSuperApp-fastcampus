@@ -2,6 +2,7 @@ import ModernRIBs
 import Combine
 import Foundation
 import CombineUtil
+import TransportHome
 
 protocol TransportHomeRouting: ViewableRouting {
   func attachTopup()
@@ -14,9 +15,7 @@ protocol TransportHomePresentable: Presentable {
   func setSuperPayBalance(_ balance: String)
 }
 
-public protocol TransportHomeListener: AnyObject {
-  func transportHomeDidTapClose()
-}
+
 
 protocol TransportHomeInteractorDependency {
   var superPayBalance: ReadOnlyCurrentValuePublisher<Double> { get }
